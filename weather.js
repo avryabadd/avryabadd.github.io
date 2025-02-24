@@ -19,6 +19,7 @@ document.querySelector('#btnWeather').addEventListener('click', function() {
                     
                     document.getElementById("temperature").innerText = `Temperature: ${weatherData.current.temperature_2m}°F`;
                     document.getElementById("humidity").innerText = `Humidity: ${weatherData.current.relative_humidity_2m}`;
+                    getCity(latitude, longitude);
 
                     if (weatherData.current.weather_code === 0) {
                         document.getElementById("weather").innerText = `Weather: Clear`;
@@ -73,4 +74,29 @@ document.querySelector('#btnWeather').addEventListener('click', function() {
    
     getWeather();
 });
+
+async function getCity(latitude, longitude) {
+    const cityCords = `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=d7cd239c092346dfa9a462b0c180753d`;
+
+    try{
+        const cityResponse = await fetch(cityCords)
+
+        if(!cityResponse.ok){
+            throw new Error(`HTTP Error Status: ${cityResponse.status}`);
+        }
+
+        const cityData = await cityResponse.json()
+
+        console.log(cityData);
+
+        const [firstFeature] = cityData.features;
+
+        const locationName = firstFeature.properties.city || firstFeature.properties.town || firstFeature.properties.village || "Unknown location";
+        document.getElementById("location").innerText = `Location: ${locationName}`;
+
+    } catch (locationError) {
+        console.error('Error fetching weather data', locationError);
+        alert("Failed to fetch location. Please check the API or try again later.");
+    }
+}
 
