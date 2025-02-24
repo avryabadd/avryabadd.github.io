@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+</head>
+
+<body class="bg-dark d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card bg-secondary col-12 col-md-6 col-lg-4 p-3">
+
+    <h1>Cookeville Weather</h1>
+    <button id="btnWeather" class="btn btn-success">Generate Weather</button>
+    <h2 id="temperature">Temperature: </h2>
+    <h2 id="humidity">Humidity: </h2>
+    <h2 id="weather">Weather: </h2>
+
+    <div id="weather-icon">
+      <i class="bi bi-sun-fill" style="font-size: 75px;"></i> 
+
+    </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="weather.js"></script>
+</body>
+</html>
