@@ -6,7 +6,9 @@ document.querySelector('#btnWeather').addEventListener('click', function() {
                 const longitude = position.coords.longitude;
                 
                 const strBaseURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code&temperature_unit=fahrenheit`;
-
+                
+                const city = await getCityFromCoords(latitude, longitude);
+                document.getElementById("weather").innerText = `Location: ${city}`;
                 try {
                     const weatherResponse = await fetch(strBaseURL);
                     
@@ -52,6 +54,8 @@ document.querySelector('#btnWeather').addEventListener('click', function() {
                         document.getElementById("weather-icon").innerHTML = `<i class="bi bi-question-circle" style="font-size: 75px;"></i>`;
                     }
 
+
+
                 } catch (weatherError) {
                     console.error('Error fetching weather data', weatherError);
                     alert("Failed to fetch weather. Please check the API or try again later.");
@@ -63,7 +67,11 @@ document.querySelector('#btnWeather').addEventListener('click', function() {
         } else {
             alert("Geolocation is not supported by your browser.");
         }
+
+
     }
 
+   
     getWeather();
 });
+
